@@ -29,6 +29,16 @@ from typing import Any, List
 import datetime as datetime
 import pandas as pd
 import hashlib
+import warnings
+from watermark import WaterMark
+
+warnings.filterwarnings('ignore')
+pd.set_option('display.max_columns', 1000)
+pd.set_option('display.width', 1000)
+
+print(watermark())
+print(watermark(iversions=True, globals_=globals(), packages=""))
+
 
 ################################################################################
 # Step 1:
@@ -49,8 +59,12 @@ import hashlib
 # @TODO
 # Create a Record Data Class that consists of the `sender`, `receiver`, and
 # `amount` attributes
-# YOUR CODE HERE
 
+@dataclass # decorator
+class Record: # defines class as `Record`
+    sender: str # attribute 1
+    receiver: str # attribute 2
+    amount: float # attribute 3
 
 ################################################################################
 # Step 2:
@@ -68,7 +82,7 @@ class Block:
 
     # @TODO
     # Rename the `data` attribute to `record`, and set the data type to `Record`
-    data: Any
+    record: Record
 
     creator_id: int
     prev_hash: str = "0"
@@ -154,6 +168,7 @@ pychain = setup()
 # Step 3:
 # Add Relevant User Inputs to the Streamlit Interface
 
+
 # Code additional input areas for the user interface of your Streamlit
 # application. Create these input areas to capture the sender, receiver, and
 # amount for each transaction that you’ll store in the `Block` record.
@@ -179,6 +194,21 @@ input_data = st.text_input("Block Data")
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
 # YOUR CODE HERE
+
+st.markdown("# Welcome to UCB Fintech Blockchain Bears Ledger System")
+st.markdown("Thank you for trusting the most trusted decentralized Ledger for Bears")
+
+st.markdown("WIN TICKETS TO PASADENA")
+st.markdown("# Rose Bowl ! 2024!!")
+
+cell_phone = st.text_input("mobile number", placeholder="Enter your phone number")
+st.markdown("You will receive your digital raffle ticket by SMS each time you make any transaction")
+
+
+sender = st.text_input("Sender", help="wHaT?")
+receiver = st.text_input("Receiver", help="OK..")
+amount = st.number_input("Amount", help="Yea-aah!")
+st.markdown("Thank you for the 'help', lil jon !")
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
