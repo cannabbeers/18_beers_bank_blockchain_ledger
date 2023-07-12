@@ -30,14 +30,16 @@ import datetime as datetime
 import pandas as pd
 import hashlib
 import warnings
-from watermark import WaterMark
+from watermark import watermark
+
+print(watermark())
+print(watermark(iversions=True, globals_=globals(), packages=""))
 
 warnings.filterwarnings('ignore')
 pd.set_option('display.max_columns', 1000)
 pd.set_option('display.width', 1000)
 
-print(watermark())
-print(watermark(iversions=True, globals_=globals(), packages=""))
+
 
 
 ################################################################################
